@@ -1,0 +1,34 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+%matplotlib inline
+import seaborn as sns
+tit = pd.read_csv('anydata.csv')
+tit.head()
+tit.info()
+tit.describe()
+sns.countplot(x='Survived',data=tit)
+sns.countplot(x='Pclass',data=tit)
+counts = tit.groupby(['Sex','Pclass'],axis = 0)
+counts.size()
+etit = tit.drop(['Cabin'], axis=1)
+etit
+etit['Age']=etit['Age'].fillna(value='28')
+Outliervalues = etit[(etit['Fare']>=UQuantile) | (etit['Fare']<=LQuantile)]
+Outliervalues
+index = etit[(etit['Fare']>=UQuantile) | (etit['Fare']<=LQuantile)].index
+for i in index:
+    etit['Fare'][i]=etit['Fare'].quantile(0.95)
+    etit['Fare'].describe()
+y=eda2.iloc[:,1].values
+x=eda2.iloc[:,-775:].values
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(x, y, test_size=0.30, random_state=0)
+ X_train.shape
+ from sklearn.tree import DecisionTreeClassifier 
+ clf = DecisionTreeClassifier() 
+clf = clf.fit(X_train,y_train)
+y_pred = clf.predict(X_test) 
+y_pred 
+ from sklearn import metrics 
+ print("Accuracy:",round(metrics.accuracy_score(y_test, y_pred)*100,2), "%")
